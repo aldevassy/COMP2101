@@ -7,7 +7,7 @@ fqdn=$(hostname -f)
 #OS name and version
 os_info=$(cat /etc/os-release | grep "PRETTY_NAME" | cut -d '"' -f 2)
 
-# default route IP address
+# display IP address
 ip_address=$(ip route get 8.8.8.8 | awk 'NR==1 {print $7}')
 
 #To display IP addresses the machine has that are not on the 127 network
