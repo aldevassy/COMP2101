@@ -3,7 +3,7 @@
 #1 - Checking if the lxd is installed or not
 which lxd >/dev/null
 if [ $? -ne 0 ]; then
-        echo "Installing lxd, wait untill it is installed"
+        echo "Installing lxd, wait untill it is installed :-)"
         sudo snap install lxd
         if [ $? -ne 0 ]; then
         #if it cannot installed, error message!!
@@ -18,9 +18,10 @@ fi
 #2 - On the hosting VM, run lxd init --auto if no lxdbr0 interface exists
 
 if ! ip addr show lxdbr0 > /dev/null 2>&1; then
-    echo "lxdbr0 interface does not exist, running lxd init..."
+    echo "lxdbr0 interface does not exist, running lxd init"
     sudo lxd init --auto
 fi
+#
 #3 checking the container and installing if it is needed
 lxc list | grep -q COMP2101-S22
 if [ $? = 0 ]; then 
@@ -37,7 +38,7 @@ echo "Container IP address                      -" $ipaddress
 #Installing apacche2 if it is necessary and checking the status
 lxc exec COMP2101-S22 sudo apt install apache2 -q
 if [ $? = 0 ]; then 
-        echo "Apache2 is install status         - Complete"
+        echo "Apache2 is install status + Complete"
 else
         echo "Failed to install apache2"
 fi
@@ -50,8 +51,8 @@ else
 fi
 #
 if curl http://COMP2101-S22 > /dev/null 2>&1; then
-    echo "SUCCESS: Container web service is accessible from host VM"
+    echo "SUCCESS: Container web service is accessible"
 else
-    echo "FAILURE: Could not access container web service from host VM"
+    echo "FAILURE: Could not access container web service"
 fi
 
